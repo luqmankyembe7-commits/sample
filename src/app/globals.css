@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --color-ink: #07111f;
+  --color-navy: #10203a;
+  --color-deep: #091426;
+  --color-panel: #173056;
+  --color-line: #2a4064;
+  --color-gold: #d7a441;
+  --color-gold-2: #f0d7a2;
+  --color-crimson: #c4372c;
+  --color-paper: #f3efe6;
+  --color-sand: #e4dccb;
+  --color-muted: #5d6d82;
+}
+
+@utility shell {
+  margin-inline: auto;
+  width: min(100% - 2.5rem, 72rem);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #d7a441;
+  color: #07111f;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.hero-mesh {
+  background:
+    radial-gradient(900px 480px at 80% 10%, rgba(215, 164, 65, 0.18), transparent 60%),
+    radial-gradient(700px 500px at 10% 90%, rgba(196, 55, 44, 0.16), transparent 55%),
+    linear-gradient(165deg, #07111f 0%, #12284a 58%, #0b1830 100%);
+}
+
+.rule {
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
