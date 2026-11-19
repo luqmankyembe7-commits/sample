@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { company } from "@/lib/site";
@@ -8,13 +9,20 @@ export const metadata: Metadata = {
   description: "Reach Pearlcrest Security in Nakasero, Kampala, for a briefing, an existing contract, or a career enquiry.",
 };
 
-export default async function ContactPage({
+async function ContactFormFromParams({
   searchParams,
 }: {
   searchParams: Promise<{ interest?: string }>;
 }) {
   const { interest } = await searchParams;
+  return <ContactForm interest={interest} />;
+}
 
+export default function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ interest?: string }>;
+}) {
   return (
     <>
       <PageHero
@@ -64,7 +72,9 @@ export default async function ContactPage({
             </p>
           </div>
         </div>
-        <ContactForm interest={interest} />
+        <Suspense fallback={<ContactForm />}>
+          <ContactFormFromParams searchParams={searchParams} />
+        </Suspense>
       </section>
     </>
   );

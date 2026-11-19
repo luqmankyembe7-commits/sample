@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Logo } from "@/components/Logo";
 import { company, services } from "@/lib/site";
 
@@ -17,11 +17,14 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [menuPath, setMenuPath] = useState(pathname);
 
-  useEffect(() => {
+  // Close menus when the route changes (adjust state during render; avoid setState-in-effect).
+  if (menuPath !== pathname) {
+    setMenuPath(pathname);
     setOpen(false);
     setServicesOpen(false);
-  }, [pathname]);
+  }
 
   const onServices = pathname.startsWith("/services");
 

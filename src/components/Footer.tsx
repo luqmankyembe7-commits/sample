@@ -2,7 +2,14 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { company, offices, services } from "@/lib/site";
 
-export function Footer() {
+async function CopyrightYear() {
+  "use cache";
+  return new Date().getFullYear();
+}
+
+export async function Footer() {
+  const year = await CopyrightYear();
+
   return (
     <footer className="bg-deep text-sand">
       <div className="shell grid gap-10 py-14 md:grid-cols-12">
@@ -93,8 +100,10 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="shell flex flex-col gap-2 py-5 text-xs text-sand/70 sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</p>
-          <p>Sample website. Pearlcrest Security is a fictional firm created for this frontend.</p>
+          <p>
+            © {year} {company.legalName}. All rights reserved.
+          </p>
+          <p>Sample website. Pearlcrest Security is a fictional firm. Designed and developed by LUQMANshadow </p>
         </div>
       </div>
     </footer>
